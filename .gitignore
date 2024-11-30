@@ -1,22 +1,28 @@
-# Python and Django-related
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
-
-# Virtual environment
-myenv/
-env/
-
-# Django secret key
+*.pyd
 *.sqlite3
 
-# Node modules
+# Environment
+env/
+venv/
+myenv/
+
+# Static and Media
+/static/
+media/
+
+# Node.js
 node_modules/
+package-lock.json
+npm-debug.log*
 
-# Static files
-/staticfiles/
-/media/
-
-# IDE-specific
+# VSCode
 .vscode/
+
+# Other
+*.log
 *.swp
+.DS_Store
