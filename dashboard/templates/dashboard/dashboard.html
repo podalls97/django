@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Accounting Dashboard</title>
+    {% load static %}
+    <link href="{% static 'css/output.css' %}" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <!-- Container -->
+    <div class="max-w-4xl mx-auto py-8 px-4">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-blue-600 mb-4">Accounting Dashboard</h1>
+            <div class="text-gray-600">
+                <p class="text-lg">Total Income: <span class="text-green-600 font-semibold">{{ total_income }}</span></p>
+                <p class="text-lg">Total Expense: <span class="text-red-600 font-semibold">{{ total_expense }}</span></p>
+                <p class="text-lg">Balance: <span class="font-semibold">{{ balance }}</span></p>
+            </div>
+        </header>
+
+        <!-- Transactions Table -->
+        <section>
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Transactions</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse bg-white rounded-lg shadow-lg overflow-hidden">
+                    <thead>
+                        <tr class="bg-blue-600 text-white">
+                            <th class="px-4 py-2">Date</th>
+                            <th class="px-4 py-2">Category</th>
+                            <th class="px-4 py-2">Amount</th>
+                            <th class="px-4 py-2">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for transaction in transactions %}
+                        <tr class="hover:bg-gray-100">
+                            <td class="border-t px-4 py-2">{{ transaction.date }}</td>
+                            <td class="border-t px-4 py-2">
+                                <span class="px-2 py-1 rounded-full text-sm font-medium 
+                                    {% if transaction.category == 'INCOME' %}
+                                        bg-green-100 text-green-700
+                                    {% else %}
+                                        bg-red-100 text-red-700
+                                    {% endif %}">
+                                    {{ transaction.category }}
+                                </span>
+                            </td>
+                            <td class="border-t px-4 py-2">{{ transaction.amount }}</td>
+                            <td class="border-t px-4 py-2">{{ transaction.description }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
